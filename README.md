@@ -14,6 +14,11 @@ Open [http://localhost:3000](http://localhost:3000) to view it in the browser.
 The page will reload if you make edits.\
 You will also see any lint errors in the console.
 
+### `yarn start-api`
+
+Runs the flask backend api in dev mode.
+Make sure to run both `yarn start` and `yarn start-api` on separate terminals.
+
 ### `yarn test`
 
 Launches the test runner in the interactive watch mode.\
