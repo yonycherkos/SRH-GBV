@@ -59,15 +59,19 @@ class App extends React.Component {
               </Button>
           </Navbar.Collapse>
         </Navbar>
-        <p>
-          This simple tool helps to visualize important features for a SRH/GBV digital content.
-          <br/>
-          It takes the Link as input and displays the features.
-        </p>
-        <Form inline>
-          <FormControl type="text" placeholder="Link" onSubmit={() => this.s} />
-          <Button variant="primary">Visualize</Button>
-        </Form>
+        <div className={'description'}>
+          <p>
+            This simple tool helps to visualize important features for a SRH/GBV digital content.
+            <br/>
+            It takes the Link as input and displays the features.
+          </p>
+          </div>
+          <div className={'description'}>
+          <Form inline>
+            <FormControl type="text" placeholder="Link" onSubmit={() => this.s} />
+            <Button variant="primary">Visualize</Button>
+          </Form>
+          </div>
         {
           this.state.clicked ?
           <div className={"barChart"}>
