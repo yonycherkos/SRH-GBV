@@ -1,84 +1,11 @@
-.App {
-  text-align: center;
+body {
+  background-color: coral;
 }
 
-.App-logo {
-  height: 40vmin;
-  pointer-events: none;
-}
 
-@media (prefers-reduced-motion: no-preference) {
-  .App-logo {
-    animation: App-logo-spin infinite 20s linear;
-  }
-}
 
-.App-header {
-  background-color: #282c34;
-  min-height: 100vh;
+.barChart {
   display: flex;
-  flex-direction: column;
   align-items: center;
   justify-content: center;
-  font-size: calc(10px + 2vmin);
-  color: white;
-}
-
-.App-link {
-  color: #61dafb;
-}
-
-@keyframes App-logo-spin {
-  from {
-    transform: rotate(0deg);
-  }
-  to {
-    transform: rotate(360deg);
-  }
-}
-
-/*body {
-  font-family: "Lato", sans-serif;
-  font-size: 16px;
-}*/
-
-.title {
-  font-size: 1.4em;
-  font-weight: 300;
-}
-
-.bar-group .name-label {
-  text-anchor: end;
-  font-weight: 300;
-  font-size: 1em;
-  fill: #333;
-}
-
-.bar-group .value-label {
-  text-anchor: end;
-  fill: #fff;
-  font-weight: 900;
-  font-size: 0.7em;
-}
-
-.container .bar-group {
-  transition: opacity 0.3s;
-}
-
-/* Fade bars when the chart is hovered */
-.container:hover .bar-group {
-  opacity: 0.3;
-}
-
-/* But don't fade the hovered bar... */
-.container .bar-group:hover {
-  opacity: 1;
-}
-
-.container .bar-group:hover .name-label {
-  font-weight: 400;
-}
-
-.container .bar-group:hover .value-label {
-  font-size: 0.8em;
 }

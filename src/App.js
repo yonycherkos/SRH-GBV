@@ -1,26 +1,33 @@
-import React from 'react';
+import React, { PureComponent, Fragment } from 'react';
 import './App.css';
+import 'bootstrap/dist/css/bootstrap.min.css';
+import {
+  BarChart, 
+  Bar, 
+  Cell, 
+  XAxis, 
+  YAxis, 
+  CartesianGrid, 
+  Tooltip, 
+  Legend,
+} from 'recharts';
 
-function BarGroup(props) {
-  let barPadding = 2
-  let barColour = '#348AA7'
-  let widthScale = d => d * 10
-
-  let width = widthScale(props.d.value)
-  let yMid = props.barHeight * 0.5
-  
-  return <g className="bar-group">
-    <text className="name-label" x="-6" y={yMid} alignmentBaseline="middle" >{props.d.name}</text>
-    <rect y={barPadding * 0.5} width={width} height={props.barHeight - barPadding} fill={barColour} />
-    <text className="value-label" x={width- 8} y={yMid} alignmentBaseline="middle" >{props.d.value}</text>
-  </g>
-}
+import { 
+  Navbar, 
+  Nav, 
+  NavDropdown, 
+  Form, 
+  FormControl, 
+  Button 
+} from 'react-bootstrap';
 
 class App extends React.Component {
   state = {
     clicked: false,
     data: [],
   }
+
+  static jsfiddleUrl = 'https://jsfiddle.net/alidingling/30763kr7/';
 
   clickHandler() {
     fetch('/time').then(res => res.json()).then(data => {
@@ -30,35 +37,64 @@ class App extends React.Component {
   }
 
   render() {
-    
-    let barHeight = 30
-        
-    let barGroups = this.state.data.map((d, i) => <g transform={`translate(0, ${i * barHeight})`}>
-                                                    <BarGroup d={d} barHeight={barHeight} />
-                                                  </g>)                         
-    
-     
-    if(this.state.clicked) {  
-        return (
-          <svg width="800" height="300" >
-
-            <g className="container">
-              <text className="title" x="10" y="30">Features</text>
-              <g className="chart" transform="translate(100,60)">
-                {barGroups}
-              </g>
-            </g>
-
-          </svg>
-        );
-      }
-    else {
-        return (
-          <form ref={"form"} onSubmit={()=>this.clickHandler()}>
-            <button type="submit">Show me the features</button>
-          </form>
-          );
-      }
+    return (
+      <Fragment>
+        <Navbar bg="light" expand="lg">
+          <Navbar.Brand href="#home">GBV-SRH</Navbar.Brand>
+          <Navbar.Toggle aria-controls="basic-navbar-nav" />
+          <Navbar.Collapse id="basic-navbar-nav">
+            <Nav className="mr-auto">
+              <Nav.Link 
+                href="#home" 
+                onClick={() => this.setState({'clicked': false})}
+                >
+                  Home
+              </Nav.Link>
+            </Nav>
+              <Button 
+                variant="outline-success" 
+                onClick={() => this.clickHandler()}
+                >
+                Visualize
+              </Button>
+          </Navbar.Collapse>
+        </Navbar>
+        <p>
+          This simple tool helps to visualize important features for a SRH/GBV digital content.
+          <br/>
+          It takes the Link as input and displays the features.
+        </p>
+        <Form inline>
+          <FormControl type="text" placeholder="Link" onSubmit={() => this.s} />
+          <Button variant="primary">Visualize</Button>
+        </Form>
+        {
+          this.state.clicked ?
+          <div className={"barChart"}>
+          <BarChart
+            
+            width={800}
+            height={500}
+            data={this.state.data}
+            margin={{
+              top: 5, right: 30, left: 20, bottom: 5,
+            }}
+          >
+            <CartesianGrid strokeDasharray="3 3" />
+            <XAxis dataKey="name" />
+            <YAxis />
+            <Tooltip />
+            <Legend />
+            <Bar dataKey="value" fill="#0088A9" />
+            
+          </BarChart>
+          </div>
+          :
+          null
+          }
+      </Fragment>
+      );
+  
   }
 }
 
