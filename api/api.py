@@ -29,10 +29,6 @@ def keywords_to_woe_and_iv(keywords):
 	iv = list(woe_iv_data.loc[keywords]['iv'])
 	return (woe, iv)
 
-@app.route('/')
-def hello():
-	return "<h1>Hello World</h1>"
-
 @app.route('/api', methods=['POST'])
 def get_visualization_data():
 	request_data = request.get_json()
