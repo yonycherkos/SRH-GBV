@@ -11,7 +11,12 @@ import {
   Legend,
 } from "recharts";
 
-import { Navbar, Nav, Form, Button } from "react-bootstrap";
+import {
+  Navbar,
+  Nav,
+  Form,
+  Button,
+} from "react-bootstrap";
 
 class App extends React.Component {
   state = {
