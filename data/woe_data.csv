@@ -1,26 +1,18 @@
-sub_topics,contents,woe
-content_size,long,0.9028677115420143
-content_size,meduim,-0.5226473627311573
-content_size,short,-0.3656436139214928
-youth,,-0.0038535693159899662
-youth,Adolescent,1.5314763709643886
-youth,Young people,0.0
-youth,Youth,0.0
-sexual,,-0.8664189018339821
-sexual,Abortion,0.0
-sexual,HIV/AIDS,0.0
-sexual,"Reproductive health,sex",-0.8664189018339821
-sexual,"Reproductive health,sex,Abortion",0.0
-sexual,"Sexual health,Reproductive health,sex",0.0
-sexual,"Sexual health,sex",0.0
-sexual,condom,0.0
-sexual,fertility,0.0
-sexual,sex,0.7047977977799206
-sexual,"sex,Abortion",0.0
-GBV,,-0.35937400090789745
-GBV,Gender-based violence,0.6151856390902334
-GBV,"Gender-based violence,forced marriage",0.0
-GBV,"Gender-based violence,rape",0.0
-GBV,rape,0.6841785105771848
-GBV,"rape,sexual harassment",0.0
-GBV,sexual harassment,1.0206507471983979
+contents,sub_topics,woe
+long,content_size,0.7603559302533954
+meduim,content_size,-0.4065756023921915
+short,content_size,-0.3483066942682157
+Adolescent,youth,1.7719568419318752
+Young people,youth,0.0
+Youth,youth,0.0
+Abortion,sexual,0.0
+HIV/AIDS,sexual,0.0
+Reproductive health,sexual,-0.8671004876833834
+Sexual health,sexual,0.0
+condom,sexual,0.0
+fertility,sexual,0.0
+sex,sexual,0.4910229964698108
+Gender-based violence,GBV,0.26787944515560125
+forced marriage,GBV,0.0
+rape,GBV,0.7603559302533954
+sexual harassment,GBV,0.9246589815446716

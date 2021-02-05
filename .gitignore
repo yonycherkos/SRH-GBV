@@ -28,3 +28,6 @@ __pycache__
 
 # eslint
 .eslintcache
+
+# ipynb_checkpoints
+.ipynb_checkpoints
