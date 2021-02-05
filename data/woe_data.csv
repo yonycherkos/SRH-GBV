@@ -1,0 +1,26 @@
+sub_topics,contents,woe
+content_size,long,0.9028677115420143
+content_size,meduim,-0.5226473627311573
+content_size,short,-0.3656436139214928
+youth,,-0.0038535693159899662
+youth,Adolescent,1.5314763709643886
+youth,Young people,0.0
+youth,Youth,0.0
+sexual,,-0.8664189018339821
+sexual,Abortion,0.0
+sexual,HIV/AIDS,0.0
+sexual,"Reproductive health,sex",-0.8664189018339821
+sexual,"Reproductive health,sex,Abortion",0.0
+sexual,"Sexual health,Reproductive health,sex",0.0
+sexual,"Sexual health,sex",0.0
+sexual,condom,0.0
+sexual,fertility,0.0
+sexual,sex,0.7047977977799206
+sexual,"sex,Abortion",0.0
+GBV,,-0.35937400090789745
+GBV,Gender-based violence,0.6151856390902334
+GBV,"Gender-based violence,forced marriage",0.0
+GBV,"Gender-based violence,rape",0.0
+GBV,rape,0.6841785105771848
+GBV,"rape,sexual harassment",0.0
+GBV,sexual harassment,1.0206507471983979

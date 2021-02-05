@@ -150,9 +150,6 @@ class IV(Analysis):
         fig, ax = plt.subplots(figsize=(10,6))
         sns.barplot(x=feat.feature, y='woe', data=iv_df, palette=self.seq_palette(len(iv_df.index)))
         ax.set_title('WOE visualization for: ' + feat.feature)
-        # # ax.tick_params(labelrotation=45)
-        # ax.set_xticklabels(iv_df[feat.feature], rotation=45)
-        # plt.show()
         plt.xticks(rotation=90)
         plt.show()
     
