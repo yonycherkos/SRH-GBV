@@ -1,5 +1,7 @@
 ,iv,iv_interpretation
-GBV,0.30718996619842,strong
-content_size,0.28813483493619,medium
-sexual,0.28210707721339634,medium
-youth,0.17303265686759692,medium
+equality_based,1.1035700446682013,suspicious
+GBV,0.6636443298216571,suspicious
+age_based,0.30345305410359324,strong
+content_size,0.30304845340652475,strong
+SRH,0.15473236096664028,medium
+gender_based,0.12105449424123722,medium

@@ -1,24 +1,24 @@
 {
   "content_size": ["short", "meduim", "long"],
-  "youth": ["Youth", "Young people", "Adolescent"],
-  "sexual": [
-    "Sexual health",
-    "Reproductive health",
-    "sex",
-    "safer sex",
-    "family planning",
-    "condom",
-    "HIV/AIDS",
-    "Abortion",
-    "Cervical cancer",
-    "Menstrual cycle",
-    "fertility",
-    "relationship with opposite sex"
-  ],
+  "gender_based": ["gender", "girl", "women", "female"],
+  "age_based": ["youth", "Adolescent", "teenager", "child"],
+  "equality_based": ["equality", "court", "justice", "society", "our voice"],
   "GBV": [
-    "Gender-based violence",
+    "gender-based violence",
     "rape",
+    "sexual exploitation",
     "sexual harassment",
+    "child sexual abuse",
+    "sexual violence",
     "forced marriage"
+  ],
+  "SRH": [
+    "Reproductive health",
+    "family planning",
+    "pregnant",
+    "Abortion",
+    "Menstrual cycle",
+    "condom",
+    "HIV/AIDS"
   ]
 }
