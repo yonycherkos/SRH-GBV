@@ -19,6 +19,7 @@ def text_to_contents(txt):
 	quantieles = [281.0, 674.25]
 	contents = {}
 	for (sub_topic_name, content_list) in sub_topics.items():
+		contents[sub_topic_name] = []
 		if sub_topic_name == "content_size":
 			if len(txt) <= quantieles[0]:
 				contents[sub_topic_name].append("short")
@@ -37,41 +38,52 @@ def load_data():
 	iv_df= pd.read_csv("../data/iv_data.csv", index_col=0)
 	woe_df = pd.read_csv("../data/woe_data.csv", index_col=0)
 
-	iv_data = {}
-	iv_data["sub_topic_names"] = list(iv_df.index)
-	iv_data["iv"] = list(iv_df["iv"])
-	iv_data["iv_interpretation"] = list(iv_df["iv_interpretation"])
+	iv_data = []
+	sub_topic_names = list(iv_df.index)
+	ivs = list(iv_df["iv"])
+	iv_interpretations = list(iv_df["iv_interpretation"])
+	for (sub_topic_name, iv, iv_interpretation) in zip(sub_topic_names, ivs, iv_interpretations):
+		iv_data.append({"sub_topic_name": sub_topic_name, "iv": iv, "iv_interpretation": iv_interpretation})
 
-	woe_data = {}
-	woe_data["contents"] = list(woe_df.index)
-	woe_data["sub_topics"] = list(woe_df["sub_topics"])
-	woe_data["woe"] = list(woe_df["woe"])
+	woe_data = []
+	contents = list(woe_df.index)
+	sub_topics = list(woe_df["sub_topics"])
+	woes = list(woe_df["woe"])
+	for (content, sub_topic, woe) in zip(contents, sub_topics, woes):
+		woe_data.append({"content": content, "sub_topic": sub_topic, "woe": woe})
 
 	return (iv_data, woe_data)
 
 # extract iv from the post contents
 def extract_iv(contents):
 	iv_df= pd.read_csv("../data/iv_data.csv", index_col=0)
-	sub_topic_names = list(contents.keys())
 
-	iv_data = {}
-	iv_data["sub_topic_names"] = sub_topic_names
-	iv_data["iv"] = list(iv_data.loc[sub_topic_names, "iv"])
-	iv_data["iv_interpretation"] = list(iv_data.loc[sub_topic_names, "iv_interpretation"])
+	iv_data = []
+	sub_topic_names = list(contents.keys())
+	ivs = list(iv_df.loc[sub_topic_names, "iv"])
+	iv_interpretations = list(iv_df.loc[sub_topic_names, "iv_interpretation"])
+	for (sub_topic_name, iv, iv_interpretation) in zip(sub_topic_names, ivs, iv_interpretations):
+		iv_data.append({"sub_topic_name": sub_topic_name, "iv": iv, "iv_interpretation": iv_interpretation})
 
 	return iv_data
 
 # extract woe from the post contents
 def extract_woe(contents):
 	woe_df = pd.read_csv("../data/woe_data.csv", index_col=0)
-	content_list = list(contents.values())
+	content_list = []
+	for content in contents.values():
+		for c in content:
+			content_list.append(c)
 
-	woe_data = {}
-	woe_data["contents"] = list(woe_df.loc[content_list].index)
-	woe_data["sub_topics"] = list(woe_df.loc[content_list, "sub_topics"])
-	woe_data["woe"] = list(woe_df.loc[content_list, "woe"])
+	woe_data = []
+	sub_topics = list(woe_df.loc[content_list, "sub_topics"])
+	woes = list(woe_df.loc[content_list, "woe"])
+	for (content, sub_topic, woe) in zip(content_list, sub_topics, woes):
+		woe_data.append({"content": content, "sub_topic": sub_topic, "woe": woe})
 
-@app.route("/data", methods=['POST'])
+	return woe_data
+
+@app.route("/data")
 def home():
 	(iv_data, woe_data) = load_data()
 	return jsonify({"iv_data": iv_data, "woe_data": woe_data})
