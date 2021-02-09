@@ -43,16 +43,32 @@ def load_data():
 	ivs = list(iv_df["iv"])
 	iv_interpretations = list(iv_df["iv_interpretation"])
 	for (sub_topic_name, iv, iv_interpretation) in zip(sub_topic_names, ivs, iv_interpretations):
-		iv_data.append({"sub_topic_name": sub_topic_name, "iv": iv, "iv_interpretation": iv_interpretation})
+		iv_data.append({"sub_topic_name": sub_topic_name, "iv": iv, "iv_interpretation": iv_interpretation})				
 
 	woe_data = []
-	contents = list(woe_df.index)
-	sub_topics = list(woe_df["sub_topics"])
-	woes = list(woe_df["woe"])
-	for (content, sub_topic, woe) in zip(contents, sub_topics, woes):
-		woe_data.append({"content": content, "sub_topic": sub_topic, "woe": woe})
+	for sub_topic_name in woe_df["sub_topics"].unique():
+		contents = []
+		content_list = list(woe_df[woe_df["sub_topics"] == sub_topic_name].index)
+		woes = list(woe_df[woe_df["sub_topics"] == sub_topic_name]["woe"])
+		for (content, woe) in zip(content_list, woes):
+			contents.append({"content": content, "woe": woe})
+		woe_data.append({"sub_topic_name": sub_topic_name, "contents": contents})
 
-	return (iv_data, woe_data)
+	woe_extreme_data = []
+	for sub_topic_name in woe_df["sub_topics"].unique():
+		woe_extreme_data.append({"sub_topic_name": sub_topic_name,
+							     "min_woe": woe_df[woe_df["sub_topics"] == sub_topic_name]["woe"].min(),
+							     "max_woe": woe_df[woe_df["sub_topics"] == sub_topic_name]["woe"].max()
+								})
+
+	# woe_data = []
+	# contents = list(woe_df.index)
+	# sub_topics = list(woe_df["sub_topics"])
+	# woes = list(woe_df["woe"])
+	# for (content, sub_topic, woe) in zip(contents, sub_topics, woes):
+	# 	woe_data.append({"content": content, "sub_topic": sub_topic, "woe": woe})
+
+	return (iv_data, woe_data, woe_extreme_data)
 
 # extract iv from the post contents
 def extract_iv(contents):
@@ -85,8 +101,8 @@ def extract_woe(contents):
 
 @app.route("/data")
 def home():
-	(iv_data, woe_data) = load_data()
-	return jsonify({"iv_data": iv_data, "woe_data": woe_data})
+	(iv_data, woe_data, woe_extreme_data) = load_data()
+	return jsonify({"iv_data": iv_data, "woe_data": woe_data, "woe_extreme_data": woe_extreme_data})
 
 @app.route("/api", methods=['POST'])
 def get_visualization_data():
