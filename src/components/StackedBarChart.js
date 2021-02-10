@@ -17,13 +17,13 @@ export default class StackedBarChart extends React.Component {
       <ResponsiveContainer width="100%" height={300}>
         <BarChart width={730} height={250} data={this.props.data}>
           <CartesianGrid strokeDasharray="3 3" />
-          <XAxis dataKey="sup_topic_name" />
+          <XAxis dataKey="sub_topic_name" />
           <YAxis />
           <Tooltip />
           <Legend />
           <ReferenceLine y={0} stroke="#000" />
-          <Bar dataKey="min_woe" fill="#4562ec" stackId="stack" />
-          <Bar dataKey="max_woe" fill="#4562ec" stackId="stack" />
+          <Bar dataKey="min_woe" fill="#0336FF" stackId="stack" />
+          <Bar dataKey="max_woe" fill="#0336FF" stackId="stack" />
         </BarChart>
       </ResponsiveContainer>
     );

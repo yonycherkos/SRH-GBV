@@ -20,7 +20,7 @@ export default class CardBarChart extends React.Component {
           <YAxis />
           <Tooltip />
           <Legend />
-          <Bar type="monotone" dataKey="woe" fill="#4562ec" />
+          <Bar type="monotone" dataKey="woe" fill="#0336FF" />
           {/* <Bar type="monotone" dataKey="woe" fill="#49e8c2" /> */}
         </BarChart>
       </ResponsiveContainer>
