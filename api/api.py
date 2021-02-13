@@ -226,8 +226,8 @@ def load_post_data():
         return jsonify({"SRH_iv_data": SRH_iv_data, "SRH_woe_data": SRH_woe_data,
                         "GBV_iv_data": None, "GBV_woe_data": None, })
     elif topic == "GBV":
-        (SRH_iv_data, SRH_woe_data) = extract_GBV_post_data(contents)
-        return jsonify({"SRH_iv_data": SRH_iv_data, "SRH_woe_data": SRH_woe_data,
-                        "GBV_iv_data": None, "GBV_woe_data": None, })
+        (GBV_iv_data, GBV_woe_data) = extract_GBV_post_data(contents)
+        return jsonify({"SRH_iv_data": None, "SRH_woe_data": None,
+                        "GBV_iv_data": GBV_iv_data, "GBV_woe_data": GBV_woe_data, })
     return jsonify({"SRH_iv_data": None, "SRH_woe_data": None,
                     "GBV_iv_data": None, "GBV_woe_data": None, })

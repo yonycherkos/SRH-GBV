@@ -32,7 +32,6 @@ export default class SRH extends Component {
   async componentDidMount() {
     await this.loadData();
     this.setState({ dataIsReturned: true });
-    console.log(this.state.SRH_woe_extreme_data);
   }
 
   render() {
@@ -91,10 +90,12 @@ export default class SRH extends Component {
                           data={this.state.SRH_woe_data[0]["contents"]}
                         />
                         <div className="card">
-                          A longer post which have more than 600 characters or
-                          more than 100 words is more likely to have more likes,
-                          comments, and shares. A post smaller than 300
-                          characters or less than 50 words less recommended.
+                          Content size is suspicious or too good at distinguish
+                          between good and bad posts.A longer post which have
+                          more than 600 characters or more than 100 words is
+                          more likely to have more likes, comments, and shares.
+                          A post smaller than 300 characters or less than 50
+                          words less recommended.
                         </div>
                       </div>
                     </Col>
@@ -109,11 +110,12 @@ export default class SRH extends Component {
                           data={this.state.SRH_woe_data[1]["contents"]}
                         />
                         <div className="card">
-                          GBV contents are suspicious at distinguishing between
-                          good and bad. Words such as rape, sexual harassment
-                          and sexual violence have positive relationship. and
-                          words such as gender-based violence and child sexual
-                          abuse have negative relation.
+                          Images are suspicious or too good at distinguish
+                          between good and bad posts. Based on the data a post
+                          which have an image have less likes, comments, and
+                          shares than a post with no image. This is because
+                          based on the scraped data most of the posts which have
+                          an image have less text contents.
                         </div>
                       </div>
                     </Col>
@@ -128,10 +130,11 @@ export default class SRH extends Component {
                           data={this.state.SRH_woe_data[2]["contents"]}
                         />
                         <div className="card">
-                          A longer post which have more than 600 characters or
-                          more than 100 words is more likely to have more likes,
-                          comments, and shares. A post smaller than 300
-                          characters or less than 50 words less recommended.
+                          Links have a very less information at distinguish
+                          between good and bad posts or there are useless. Based
+                          on the data a post which have a link has a little bit
+                          higher likes, comments, and shares than a post with no
+                          link.
                         </div>
                       </div>
                     </Col>
@@ -150,11 +153,11 @@ export default class SRH extends Component {
                           data={this.state.SRH_woe_data[3]["contents"]}
                         />
                         <div className="card">
-                          GBV contents are suspicious at distinguishing between
-                          good and bad. Words such as rape, sexual harassment
-                          and sexual violence have positive relationship. and
-                          words such as gender-based violence and child sexual
-                          abuse have negative relation.
+                          Language type which wheather the post is in amharic or
+                          english have a very less information at distinguish
+                          between good and bad posts or there are useless. Based
+                          on the data an english post has a little bit higher
+                          likes, comments, and shares than a amharic post.
                         </div>
                       </div>
                     </Col>
@@ -169,10 +172,14 @@ export default class SRH extends Component {
                           data={this.state.SRH_woe_data[4]["contents"]}
                         />
                         <div className="card">
-                          A longer post which have more than 600 characters or
-                          more than 100 words is more likely to have more likes,
-                          comments, and shares. A post smaller than 300
-                          characters or less than 50 words less recommended.
+                          A time at which a post is posted have a strong
+                          information at distinguish between good and bad posts.
+                          Based on the data a posts which have been posted early
+                          in the morning and late night have higher likes,
+                          comments and shares. And a posts which have been
+                          posted in the morning, in the afternoon, in the
+                          evenining and at night have much less likes, comments
+                          and shares.
                         </div>
                       </div>
                     </Col>

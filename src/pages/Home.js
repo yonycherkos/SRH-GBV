@@ -31,7 +31,6 @@ export default class Home extends Component {
   async componentDidMount() {
     await this.loadData();
     this.setState({ dataIsReturned: true });
-    console.log(this.state.GBV_iv_data)
   }
 
   render() {
@@ -92,65 +91,6 @@ export default class Home extends Component {
                   </div>
                 </Col>
               </Row>
-
-              {/* <Row>
-                <Col sm="12" md="6" lg="4">
-                  <strong>{this.state.woe_data[0]["sub_topic_name"]}</strong>
-                  <Row>
-                    <Col sm="12">
-                      <div className="card">
-                        <CardBarChart
-                          data={this.state.woe_data[0]["contents"]}
-                        />
-                        <div className="card">
-                          A longer post which have more than 600 characters or
-                          more than 100 words is more likely to have more likes,
-                          comments, and shares. A post smaller than 300
-                          characters or less than 50 words less recommended.
-                        </div>
-                      </div>
-                    </Col>
-                  </Row>
-                </Col>
-                <Col sm="12" md="6" lg="4">
-                  <strong>{this.state.woe_data[1]["sub_topic_name"]}</strong>
-                  <Row>
-                    <Col sm="12">
-                      <div className="card">
-                        <CardBarChart
-                          data={this.state.woe_data[1]["contents"]}
-                        />
-                        <div className="card">
-                          GBV contents are suspicious at distinguishing between
-                          good and bad. Words such as rape, sexual harassment
-                          and sexual violence have positive relationship. and
-                          words such as gender-based violence and child sexual
-                          abuse have negative relation.
-                        </div>
-                      </div>
-                    </Col>
-                  </Row>
-                </Col>
-                <Col sm="12" md="6" lg="4">
-                  <strong>{this.state.woe_data[2]["sub_topic_name"]}</strong>
-                  <Row>
-                    <Col sm="12">
-                      <div className="card">
-                        <CardBarChart
-                          data={this.state.woe_data[2]["contents"]}
-                        />
-                        <div className="card">
-                          SRH contents have a meduim strength at distinguishing
-                          between good and bad posts.. Words such as
-                          Reproductive health have negative relationship. and
-                          words such as Abortion, HIV/AIDS, condom, and pregnant
-                          have a neutral relation.
-                        </div>
-                      </div>
-                    </Col>
-                  </Row>
-                </Col>
-              </Row> */}
             </Container>
           ) : null}
         </div>
