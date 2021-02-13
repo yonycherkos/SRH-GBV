@@ -1,0 +1,16 @@
+contents,features,woe
+long,content_size,-0.04255961441879589
+medium,content_size,-0.06317890162153168
+short,content_size,0.2087548138621102
+has_image,image,-2.068512471147646
+no_image,image,0.7588011507813821
+has_link,link,0.6787584431078456
+no_link,link,-1.3753652905877003
+am,language,0.0
+en,language,0.13976194237515882
+Early Morning,time,0.09097177820572659
+Eve,time,-0.19671029424605427
+Late Night,time,-0.6021754023542187
+Morning,time,-0.6021754023542187
+Night,time,1.1895840668738364
+Noon,time,0.784118958765672

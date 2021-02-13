@@ -1,24 +1,28 @@
 {
   "content_size": ["short", "meduim", "long"],
-  "gender_based": ["gender", "girl", "women", "female"],
-  "age_based": ["youth", "Adolescent", "teenager", "child"],
-  "equality_based": ["equality", "court", "justice", "society", "our voice"],
   "GBV": [
     "gender-based violence",
     "rape",
-    "sexual exploitation",
-    "sexual harassment",
-    "child sexual abuse",
     "sexual violence",
-    "forced marriage"
+    "forced marriage",
+    "Sexual Abuse",
+    "Emotional Violence",
+    "Physical violence"
   ],
   "SRH": [
+    "Sexual health",
     "Reproductive health",
     "family planning",
-    "pregnant",
-    "Abortion",
-    "Menstrual cycle",
     "condom",
-    "HIV/AIDS"
+    "HIV/AIDS",
+    "STIs",
+    "HCT",
+    "Abortion",
+    "Cervical cancer",
+    "Menstrual cycle",
+    "fertility",
+    "pubertal changes",
+    "Post Pill",
+    "contraception"
   ]
 }

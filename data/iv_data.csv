@@ -1,7 +1,4 @@
 ,iv,iv_interpretation
-equality_based,1.1035700446682013,suspicious
-GBV,0.6636443298216571,suspicious
-age_based,0.30345305410359324,strong
-content_size,0.30304845340652475,strong
-SRH,0.15473236096664028,medium
-gender_based,0.12105449424123722,medium
+GBV,1.2402618696778211,suspicious
+SRH,0.5890411926062078,suspicious
+content_size,0.270579448322121,medium

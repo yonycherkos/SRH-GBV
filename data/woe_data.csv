@@ -1,28 +1,16 @@
 contents,sub_topics,woe
-long,content_size,0.3883048200900723
-medium,content_size,-0.8413357309844415
-short,content_size,-0.7543243539948117
-female,gender_based,0.3218150788212394
-gender,gender_based,0.09129142020940703
-girl,gender_based,0.43959811447762287
-women,gender_based,-0.14022038077531926
-Adolescent,age_based,1.5382104031457327
-child,age_based,-1.2343783190940487
-youth,age_based,0.0
-court,equality_based,-0.9466962466422678
-equality,equality_based,1.132745295037568
-justice,equality_based,1.315066851831523
-our voice,equality_based,0.0
-society,equality_based,-0.019934214900817367
-child sexual abuse,GBV,-0.6590141741904867
+long,content_size,0.7331354943316231
+medium,content_size,-0.5969191484653915
+short,content_size,-0.5969191484653915
+Sexual Abuse,GBV,0.4146817632130882
 forced marriage,GBV,0.0
-gender-based violence,GBV,-0.18901054494475117
-rape,GBV,0.1633447378494648
-sexual exploitation,GBV,-0.25354906608232247
-sexual harassment,GBV,0.3218150788212394
-sexual violence,GBV,1.5004700751628854
+gender-based violence,GBV,0.5482131558376109
+rape,GBV,0.5970033200070429
+sexual violence,GBV,1.549661696052073
 Abortion,SRH,0.0
 HIV/AIDS,SRH,0.0
-Reproductive health,SRH,-1.639843427202213
+Reproductive health,SRH,-0.8380812052822797
+Sexual health,SRH,0.0
 condom,SRH,0.0
-pregnant,SRH,0.0
+contraception,SRH,0.0
+fertility,SRH,0.0
