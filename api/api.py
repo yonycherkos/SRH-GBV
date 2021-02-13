@@ -7,125 +7,227 @@ import json
 app = Flask(__name__)
 
 
-def text_to_contents(txt):
-    f = open("../data/sub_topics.json")
-    sub_topics = json.load(f)
-    f.close()
-    lower_meduim = 350
-    upper_meduim = 600
-    contents = {}
-    for (sub_topic_name, content_list) in sub_topics.items():
-        contents[sub_topic_name] = []
-        if sub_topic_name == "content_size":
-            if len(txt) <= lower_meduim:
-                contents[sub_topic_name].append("short")
-            elif len(txt) >= upper_meduim:
-                contents[sub_topic_name].append("long")
-            else:
-                contents[sub_topic_name].append("meduim")
-        else:
-            for content in content_list:
-                if content.lower() in str(txt).lower():
-                    contents[sub_topic_name].append(content)
+def extract_home_data():
+    SRH_iv_df = pd.read_csv("../data/SRH_iv_data.csv", index_col=0)
+    GVB_iv_df = pd.read_csv("../data/GBV_iv_data.csv", index_col=0)
 
-        if len(contents[sub_topic_name]) == 0:
-            del contents[sub_topic_name]
+    SRH_iv_data = []
+    features = list(SRH_iv_df.index)
+    ivs = list(SRH_iv_df["iv"])
+    iv_interpretations = list(SRH_iv_df["iv_interpretation"])
+    for (feature, iv, iv_interpretation) in zip(features, ivs, iv_interpretations):
+        SRH_iv_data.append({"feature": feature,
+                            "iv": iv,
+                            "iv_interpretation": iv_interpretation})
 
-    return contents
+    GVB_iv_data = []
+    features = list(GVB_iv_df.index)
+    ivs = list(GVB_iv_df["iv"])
+    iv_interpretations = list(GVB_iv_df["iv_interpretation"])
+    for (feature, iv, iv_interpretation) in zip(features, ivs, iv_interpretations):
+        GVB_iv_data.append({"feature": feature,
+                            "iv": iv,
+                            "iv_interpretation": iv_interpretation})
+
+    return (SRH_iv_data, GVB_iv_data)
 
 
-def load_data():
-    iv_df = pd.read_csv("../data/iv_data.csv", index_col=0)
-    woe_df = pd.read_csv("../data/woe_data.csv", index_col=0)
+def extract_SRH_data():
+    SRH_iv_df = pd.read_csv("../data/SRH_iv_data.csv", index_col=0)
+    SRH_woe_df = pd.read_csv("../data/SRH_woe_data.csv", index_col=0)
 
-    iv_data = []
-    sub_topic_names = list(iv_df.index)
-    ivs = list(iv_df["iv"])
-    iv_interpretations = list(iv_df["iv_interpretation"])
-    for (sub_topic_name, iv, iv_interpretation) in zip(sub_topic_names, ivs, iv_interpretations):
-        iv_data.append({"sub_topic_name": sub_topic_name,
-                        "iv": iv, "iv_interpretation": iv_interpretation})
+    SRH_iv_data = []
+    features = list(SRH_iv_df.index)
+    ivs = list(SRH_iv_df["iv"])
+    iv_interpretations = list(SRH_iv_df["iv_interpretation"])
+    for (feature, iv, iv_interpretation) in zip(features, ivs, iv_interpretations):
+        SRH_iv_data.append({"feature": feature,
+                            "iv": iv,
+                            "iv_interpretation": iv_interpretation})
 
-    woe_data = []
-    for sub_topic_name in woe_df["sub_topics"].unique():
+    SRH_woe_data = []
+    for feature in SRH_woe_df["features"].unique():
         contents = []
         content_list = list(
-            woe_df[woe_df["sub_topics"] == sub_topic_name].index)
-        woes = list(woe_df[woe_df["sub_topics"] == sub_topic_name]["woe"])
+            SRH_woe_df[SRH_woe_df["features"] == feature].index)
+        woes = list(SRH_woe_df[SRH_woe_df["features"] == feature]["woe"])
         for (content, woe) in zip(content_list, woes):
             contents.append({"content": content, "woe": woe})
-        woe_data.append(
-            {"sub_topic_name": sub_topic_name, "contents": contents})
+        SRH_woe_data.append(
+            {"feature": feature, "contents": contents})
 
-    woe_extreme_data = []
-    for sub_topic_name in woe_df["sub_topics"].unique():
-        woe_extreme_data.append({"sub_topic_name": sub_topic_name,
-                                 "min_woe": woe_df[woe_df["sub_topics"] == sub_topic_name]["woe"].min(),
-                                 "max_woe": woe_df[woe_df["sub_topics"] == sub_topic_name]["woe"].max()
-                                 })
+    SRH_woe_extreme_data = []
+    for feature in SRH_woe_df["features"].unique():
+        SRH_woe_extreme_data.append({"feature": feature,
+                                     "min_woe": SRH_woe_df[SRH_woe_df["features"] == feature]["woe"].min(),
+                                     "max_woe": SRH_woe_df[SRH_woe_df["features"] == feature]["woe"].max()
+                                     })
 
-    return (iv_data, woe_data, woe_extreme_data)
-
-
-def extract_iv(contents):
-    iv_df = pd.read_csv("../data/iv_data.csv", index_col=0)
-
-    iv_data = []
-    sub_topic_names = list(contents.keys())
-    ivs = list(iv_df.loc[sub_topic_names, "iv"])
-    iv_interpretations = list(iv_df.loc[sub_topic_names, "iv_interpretation"])
-    for (sub_topic_name, iv, iv_interpretation) in zip(sub_topic_names, ivs, iv_interpretations):
-        iv_data.append({"sub_topic_name": sub_topic_name,
-                        "iv": iv, "iv_interpretation": iv_interpretation})
-
-    return iv_data
+    return (SRH_iv_data, SRH_woe_data, SRH_woe_extreme_data)
 
 
-def extract_woe(contents):
-    woe_df = pd.read_csv("../data/woe_data.csv", index_col=0)
-    content_list = []
-    for content in contents.values():
-        for c in content:
-            content_list.append(c)
+def extract_GBV_data():
+    GBV_iv_df = pd.read_csv("../data/GBV_iv_data.csv", index_col=0)
+    GBV_woe_df = pd.read_csv("../data/GBV_woe_data.csv", index_col=0)
 
-    woe_data = []
-    sub_topic_names = list(woe_df.loc[content_list, "sub_topics"])
-    woes = list(woe_df.loc[content_list, "woe"])
-    for (content, sub_topic_name, woe) in zip(content_list, sub_topic_names, woes):
-        woe_data.append(
-            {"content": content, "sub_topic_name": sub_topic_name, "woe": woe})
+    GBV_iv_data = []
+    features = list(GBV_iv_df.index)
+    ivs = list(GBV_iv_df["iv"])
+    iv_interpretations = list(GBV_iv_df["iv_interpretation"])
+    for (feature, iv, iv_interpretation) in zip(features, ivs, iv_interpretations):
+        GBV_iv_data.append({"feature": feature,
+                            "iv": iv,
+                            "iv_interpretation": iv_interpretation})
 
-    return woe_data
+    GBV_woe_data = []
+    for feature in GBV_woe_df["features"].unique():
+        contents = []
+        content_list = list(
+            GBV_woe_df[GBV_woe_df["features"] == feature].index)
+        woes = list(GBV_woe_df[GBV_woe_df["features"] == feature]["woe"])
+        for (content, woe) in zip(content_list, woes):
+            contents.append({"content": content, "woe": woe})
+        GBV_woe_data.append(
+            {"feature": feature, "contents": contents})
 
+    GBV_woe_extreme_data = []
+    for feature in GBV_woe_df["features"].unique():
+        GBV_woe_extreme_data.append({"feature": feature,
+                                     "min_woe": GBV_woe_df[GBV_woe_df["features"] == feature]["woe"].min(),
+                                     "max_woe": GBV_woe_df[GBV_woe_df["features"] == feature]["woe"].max()
+                                     })
 
-def extract_woe_extreme(contents):
-    woe_df = pd.read_csv("../data/woe_data.csv", index_col=0)
-    content_list = []
-    for content in contents.values():
-        for c in content:
-            content_list.append(c)
-
-    woe_extreme_data = []
-    sub_topic_names = list(woe_df.loc[content_list, "sub_topics"].unique())
-    for sub_topic_name in sub_topic_names:
-        woe_extreme_data.append({"sub_topic_name": sub_topic_name,
-                                 "min_woe": woe_df[woe_df["sub_topics"] == sub_topic_name]["woe"].min(),
-                                 "max_woe": woe_df[woe_df["sub_topics"] == sub_topic_name]["woe"].max()
-                                 })
-    return woe_extreme_data
-
-
-@app.route("/data")
-def home():
-    (iv_data, woe_data, woe_extreme_data) = load_data()
-    return jsonify({"iv_data": iv_data, "woe_data": woe_data, "woe_extreme_data": woe_extreme_data})
+    return (GBV_iv_data, GBV_woe_data, GBV_woe_extreme_data)
 
 
-@app.route("/api", methods=['POST'])
-def get_visualization_data():
+def find_content_size(txt):
+    lower_meduim = 350
+    upper_meduim = 600
+    if len(txt) <= lower_meduim:
+        content_size = "short"
+    elif len(txt) >= upper_meduim:
+        content_size = "long"
+    else:
+        content_size = "medium"
+    return content_size
+
+
+def find_content_topic(txt):
+    contain_SRH = False
+    with open("../data/SRH_sub_topics.json") as f:
+        SRH_sub_topics = json.load(f)
+        for sub_topic in list(SRH_sub_topics.values())[0]:
+            if sub_topic.lower() in txt.lower():
+                contain_SRH = True
+                break
+
+    contain_GBV = False
+    with open("../data/GBV_sub_topics.json") as f:
+        GBV_sub_topics = json.load(f)
+        for sub_topic in list(GBV_sub_topics.values())[0]:
+            if sub_topic.lower() in txt.lower():
+                contain_GBV = True
+                break
+
+    topic = None
+    if (contain_SRH and contain_GBV):
+        topic = "both"
+    elif contain_SRH:
+        topic = "SRH"
+    elif contain_GBV:
+        topic = "GBV"
+
+    return topic
+
+
+def extract_SRH_post_data(contents):
+    SRH_iv_df = pd.read_csv("../data/SRH_iv_data.csv", index_col=0)
+    SRH_woe_df = pd.read_csv("../data/SRH_woe_data.csv", index_col=0)
+
+    SRH_iv_data = []
+    features = list(SRH_iv_df.index)
+    ivs = list(SRH_iv_df["iv"])
+    iv_interpretations = list(SRH_iv_df["iv_interpretation"])
+    for (feature, iv, iv_interpretation) in zip(features, ivs, iv_interpretations):
+        SRH_iv_data.append({"feature": feature,
+                            "iv": iv,
+                            "iv_interpretation": iv_interpretation})
+
+    SRH_woe_data = []
+    content_list = list(contents.values())
+    features = list(SRH_woe_df.loc[content_list, "features"])
+    woes = list(SRH_woe_df.loc[content_list, "woe"])
+    for (content, feature, woe) in zip(content_list, features, woes):
+        SRH_woe_data.append(
+            {"content": content, "feature": feature, "woe": woe})
+
+    return (SRH_iv_data, SRH_woe_data)
+
+
+def extract_GBV_post_data(contents):
+    GBV_iv_df = pd.read_csv("../data/GBV_iv_data.csv", index_col=0)
+    GBV_woe_df = pd.read_csv("../data/GBV_woe_data.csv", index_col=0)
+
+    GBV_iv_data = []
+    features = list(GBV_iv_df.index)
+    ivs = list(GBV_iv_df["iv"])
+    iv_interpretations = list(GBV_iv_df["iv_interpretation"])
+    for (feature, iv, iv_interpretation) in zip(features, ivs, iv_interpretations):
+        GBV_iv_data.append({"feature": feature,
+                            "iv": iv,
+                            "iv_interpretation": iv_interpretation})
+
+    GBV_woe_data = []
+    content_list = list(contents.values())
+    features = list(GBV_woe_df.loc[content_list, "features"])
+    woes = list(GBV_woe_df.loc[content_list, "woe"])
+    for (content, feature, woe) in zip(content_list, features, woes):
+        GBV_woe_data.append(
+            {"content": content, "feature": feature, "woe": woe})
+
+    return (GBV_iv_data, GBV_woe_data)
+
+
+@app.route("/home")
+def load_home_data():
+    (SRH_iv_data, GBV_iv_data) = extract_home_data()
+    return jsonify({"SRH_iv_data": SRH_iv_data, "GBV_iv_data": GBV_iv_data})
+
+
+@app.route("/SRH")
+def load_SRH_data():
+    (SRH_iv_data, SRH_woe_data, SRH_woe_extreme_data) = extract_SRH_data()
+    return jsonify({"SRH_iv_data": SRH_iv_data, "SRH_woe_data": SRH_woe_data, "SRH_woe_extreme_data": SRH_woe_extreme_data})
+
+
+@app.route("/GBV")
+def load_GBV_data():
+    (GBV_iv_data, GBV_woe_data, GBV_woe_extreme_data) = extract_GBV_data()
+    return jsonify({"GBV_iv_data": GBV_iv_data, "GBV_woe_data": GBV_woe_data, "GBV_woe_extreme_data": GBV_woe_extreme_data})
+
+
+@app.route("/post", methods=['POST'])
+def load_post_data():
     request_data = request.get_json()
-    contents = text_to_contents(request_data["postData"])
-    iv_data = extract_iv(contents)
-    woe_data = extract_woe(contents)
+    contents = {"content_size": find_content_size(request_data["text"]),
+                "image": request_data["image"],
+                "link": request_data["link"],
+                "language": request_data["language"],
+                "time": request_data["time"]}
 
-    return jsonify({"iv_data": iv_data, "woe_data": woe_data})
+    topic = find_content_topic(request_data["text"])
+    if topic == "both":
+        (SRH_iv_data, SRH_woe_data) = extract_SRH_post_data(contents)
+        (GBV_iv_data, GBV_woe_data) = extract_GBV_post_data(contents)
+        return jsonify({"SRH_iv_data": SRH_iv_data, "SRH_woe_data": SRH_woe_data,
+                        "GBV_iv_data": GBV_iv_data, "GBV_woe_data": GBV_woe_data, })
+    elif topic == "SRH":
+        (SRH_iv_data, SRH_woe_data) = extract_SRH_post_data(contents)
+        return jsonify({"SRH_iv_data": SRH_iv_data, "SRH_woe_data": SRH_woe_data,
+                        "GBV_iv_data": None, "GBV_woe_data": None, })
+    elif topic == "GBV":
+        (SRH_iv_data, SRH_woe_data) = extract_GBV_post_data(contents)
+        return jsonify({"SRH_iv_data": SRH_iv_data, "SRH_woe_data": SRH_woe_data,
+                        "GBV_iv_data": None, "GBV_woe_data": None, })
+    return jsonify({"SRH_iv_data": None, "SRH_woe_data": None,
+                    "GBV_iv_data": None, "GBV_woe_data": None, })
