@@ -12,7 +12,6 @@ import {
 
 export default class SimpleBarChart extends React.Component {
   render() {
-    console.log(this.props);
     return (
       <ResponsiveContainer width="100%" height={300}>
         <BarChart width={730} height={250} data={this.props.data}>

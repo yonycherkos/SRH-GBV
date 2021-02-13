@@ -17,7 +17,7 @@ export default class StackedBarChart extends React.Component {
       <ResponsiveContainer width="100%" height={300}>
         <BarChart width={730} height={250} data={this.props.data}>
           <CartesianGrid strokeDasharray="3 3" />
-          <XAxis dataKey="sub_topic_name" />
+          <XAxis dataKey="feature" />
           <YAxis />
           <Tooltip />
           <Legend />
