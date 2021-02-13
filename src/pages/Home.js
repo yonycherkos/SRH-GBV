@@ -12,20 +12,18 @@ export default class Home extends Component {
     this.componentDidMount = this.componentDidMount.bind(this);
 
     this.state = {
-      iv_data: [],
-      woe_data: [],
-      woe_data_extreme: [],
+      SRH_iv_data: [],
+      GBV_iv_data: [],
       dataIsReturned: false,
     };
   }
 
   async loadData() {
-    const response = await fetch("/data");
+    const response = await fetch("/home");
     const json = await response.json();
     this.setState({
-      iv_data: json.iv_data,
-      woe_data: json.woe_data,
-      woe_extreme_data: json.woe_extreme_data,
+      SRH_iv_data: json.SRH_iv_data,
+      GBV_iv_data: json.GBV_iv_data,
       dataIsReturned: false,
     });
   }
@@ -33,6 +31,7 @@ export default class Home extends Component {
   async componentDidMount() {
     await this.loadData();
     this.setState({ dataIsReturned: true });
+    console.log(this.state.GBV_iv_data)
   }
 
   render() {
@@ -57,20 +56,23 @@ export default class Home extends Component {
 
               <Row>
                 <Col sm="12" md="12" lg="6">
-                  <strong>Information Value</strong>
+                  <strong>SRH Information Value</strong>
                   <div className="card linechart">
                     <SimpleBarChart
-                      data={this.state.iv_data}
-                      xAxisDatkey="sub_topic_name"
+                      data={this.state.SRH_iv_data}
+                      xAxisDatkey="feature"
                       legendDatakey="iv"
                     />
                   </div>
                 </Col>
-
                 <Col sm="12" md="12" lg="6">
-                  <strong>Weight of Evidences</strong>
+                  <strong>GBV Information Value</strong>
                   <div className="card linechart">
-                    <StackedBarChart data={this.state.woe_extreme_data} />
+                    <SimpleBarChart
+                      data={this.state.GBV_iv_data}
+                      xAxisDatkey="feature"
+                      legendDatakey="iv"
+                    />
                   </div>
                 </Col>
               </Row>
@@ -91,7 +93,7 @@ export default class Home extends Component {
                 </Col>
               </Row>
 
-              <Row>
+              {/* <Row>
                 <Col sm="12" md="6" lg="4">
                   <strong>{this.state.woe_data[0]["sub_topic_name"]}</strong>
                   <Row>
@@ -119,11 +121,11 @@ export default class Home extends Component {
                           data={this.state.woe_data[1]["contents"]}
                         />
                         <div className="card">
-                          A gender based contents have a meduim strength at
-                          distinguishing between good and bad posts. Inspite of
-                          that words such as girl, female, and gender have
-                          positive relation with likability of a post. And a
-                          words such as women have negative relation.
+                          GBV contents are suspicious at distinguishing between
+                          good and bad. Words such as rape, sexual harassment
+                          and sexual violence have positive relationship. and
+                          words such as gender-based violence and child sexual
+                          abuse have negative relation.
                         </div>
                       </div>
                     </Col>
@@ -138,65 +140,6 @@ export default class Home extends Component {
                           data={this.state.woe_data[2]["contents"]}
                         />
                         <div className="card">
-                          An age based contents have a meduim strength at
-                          distinguishing between good and bad posts. Words such
-                          as Adolescent have positive relation, and words such
-                          as child, and youth have negative and neutral
-                          relation.
-                        </div>
-                      </div>
-                    </Col>
-                  </Row>
-                </Col>
-              </Row>
-
-              <Row>
-                <Col sm="12" md="6" lg="4">
-                  <strong>{this.state.woe_data[3]["sub_topic_name"]}</strong>
-                  <Row>
-                    <Col sm="12">
-                      <div className="card">
-                        <CardBarChart
-                          data={this.state.woe_data[3]["contents"]}
-                        />
-                        <div className="card">
-                          A equality based contents are suspicious at
-                          distinguishing between good and bad. Words such as
-                          equality and justic have positive relationship. and
-                          words such as court have negative relation.
-                        </div>
-                      </div>
-                    </Col>
-                  </Row>
-                </Col>
-                <Col sm="12" md="6" lg="4">
-                  <strong>{this.state.woe_data[4]["sub_topic_name"]}</strong>
-                  <Row>
-                    <Col sm="12">
-                      <div className="card">
-                        <CardBarChart
-                          data={this.state.woe_data[4]["contents"]}
-                        />
-                        <div className="card">
-                          GBV contents are suspicious at distinguishing between
-                          good and bad. Words such as rape, sexual harassment
-                          and sexual violence have positive relationship. and
-                          words such as gender-based violence and child sexual
-                          abuse have negative relation.
-                        </div>
-                      </div>
-                    </Col>
-                  </Row>
-                </Col>
-                <Col sm="12" md="6" lg="4">
-                  <strong>{this.state.woe_data[5]["sub_topic_name"]}</strong>
-                  <Row>
-                    <Col sm="12">
-                      <div className="card">
-                        <CardBarChart
-                          data={this.state.woe_data[5]["contents"]}
-                        />
-                        <div className="card">
                           SRH contents have a meduim strength at distinguishing
                           between good and bad posts.. Words such as
                           Reproductive health have negative relationship. and
@@ -207,7 +150,7 @@ export default class Home extends Component {
                     </Col>
                   </Row>
                 </Col>
-              </Row>
+              </Row> */}
             </Container>
           ) : null}
         </div>
