@@ -1,8 +1,6 @@
 import React, { Component } from "react";
 import { Container, Row, Col } from "reactstrap";
 import SimpleBarChart from "../components/SimpleBarChart";
-import StackedBarChart from "../components/StackedBarChart";
-import CardBarChart from "../components/CardBarChart";
 
 export default class Home extends Component {
   constructor() {

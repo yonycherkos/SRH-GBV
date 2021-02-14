@@ -14,6 +14,7 @@ export default class GBV extends Component {
     this.state = {
       GBV_iv_data: [],
       GBV_woe_data: [],
+      GBV_woe_extreme_data: [],
       dataIsReturned: false,
     };
   }
@@ -24,6 +25,7 @@ export default class GBV extends Component {
     this.setState({
       GBV_iv_data: json.GBV_iv_data,
       GBV_woe_data: json.GBV_woe_data,
+      GBV_woe_extreme_data: json.GBV_woe_extreme_data,
       dataIsReturned: false,
     });
   }
@@ -40,6 +42,13 @@ export default class GBV extends Component {
           {this.state.dataIsReturned ? (
             <Container fluid={true}>
               <Row>
+                <Col sm="12">
+                  <div className="card intro">
+                    <strong>Gender Based Violence</strong>
+                  </div>
+                </Col>
+              </Row>
+              <Row>
                 <Col sm="12" md="12" lg="6">
                   <strong>Information Value</strong>
                   <div className="card linechart">
@@ -54,9 +63,8 @@ export default class GBV extends Component {
                   <strong>Weight of Evidence</strong>
                   <div className="card linechart">
                     <StackedBarChart
-                      data={this.state.SRH_woe_extreme_data}
+                      data={this.state.GBV_woe_extreme_data}
                       xAxisDatkey="feature"
-                      legendDatakey="woe"
                     />
                   </div>
                 </Col>

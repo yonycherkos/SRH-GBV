@@ -21,9 +21,8 @@ export default class StackedBarChart extends React.Component {
           <YAxis />
           <Tooltip />
           <Legend />
-          <ReferenceLine y={0} stroke="#000" />
-          <Bar dataKey="min_woe" fill="#0336FF" stackId="stack" />
-          <Bar dataKey="max_woe" fill="#0336FF" stackId="stack" />
+          <Bar dataKey="max_woe" fill="#0336FF" />
+          <Bar dataKey="min_woe" fill="#72A1FF" />
         </BarChart>
       </ResponsiveContainer>
     );

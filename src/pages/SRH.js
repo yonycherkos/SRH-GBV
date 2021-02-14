@@ -32,6 +32,7 @@ export default class SRH extends Component {
   async componentDidMount() {
     await this.loadData();
     this.setState({ dataIsReturned: true });
+    console.log(this.state.SRH_woe_extreme_data);
   }
 
   render() {
@@ -40,6 +41,13 @@ export default class SRH extends Component {
         <div className="main-content">
           {this.state.dataIsReturned ? (
             <Container fluid={true}>
+              <Row>
+                <Col sm="12">
+                  <div className="card intro">
+                    <strong>Sexual Reproductive Health</strong>
+                  </div>
+                </Col>
+              </Row>
               <Row>
                 <Col sm="12" md="12" lg="6">
                   <strong>Information Value</strong>
@@ -57,7 +65,6 @@ export default class SRH extends Component {
                     <StackedBarChart
                       data={this.state.SRH_woe_extreme_data}
                       xAxisDatkey="feature"
-                      legendDatakey="woe"
                     />
                   </div>
                 </Col>
