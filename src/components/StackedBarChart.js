@@ -7,7 +7,6 @@ import {
   YAxis,
   Tooltip,
   Legend,
-  ReferenceLine,
   Bar,
 } from "recharts";
 

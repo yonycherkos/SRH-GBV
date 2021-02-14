@@ -97,12 +97,11 @@ export default class GBV extends Component {
                           data={this.state.GBV_woe_data[0]["contents"]}
                         />
                         <div className="card">
-                          Content size is suspicious or too good at distinguish
-                          between good and bad posts.A longer post which have
-                          more than 600 characters or more than 100 words is
-                          more likely to have more likes, comments, and shares.
-                          A post smaller than 300 characters or less than 50
-                          words less recommended.
+                          Content size is very weak at distinguishing between
+                          bad and good posts. A longer post that has greater
+                          than 600 characters or 100 words has more likes,
+                          comments, and shares than a short post that has less
+                          than 300 characters or 50 words.
                         </div>
                       </div>
                     </Col>
@@ -117,12 +116,12 @@ export default class GBV extends Component {
                           data={this.state.GBV_woe_data[1]["contents"]}
                         />
                         <div className="card">
-                          Images are suspicious or too good at distinguish
+                          Images are suspicious or too good to distinguish
                           between good and bad posts. Based on the data a post
-                          which have an image have less likes, comments, and
+                          that has an image has fewer likes, comments, and
                           shares than a post with no image. This is because
-                          based on the scraped data most of the posts which have
-                          an image have less text contents.
+                          based on the scraped data most of the posts with an
+                          image have fewer text contents.
                         </div>
                       </div>
                     </Col>
@@ -137,11 +136,10 @@ export default class GBV extends Component {
                           data={this.state.GBV_woe_data[2]["contents"]}
                         />
                         <div className="card">
-                          Links have a very less information at distinguish
-                          between good and bad posts or there are useless. Based
-                          on the data a post which have a link has a little bit
-                          higher likes, comments, and shares than a post with no
-                          link.
+                          Links have very little information to distinguish
+                          between good and bad posts. Based on the data a post
+                          with a link has little bit higher likes, comments, and
+                          shares than a post with no link.
                         </div>
                       </div>
                     </Col>
@@ -160,11 +158,11 @@ export default class GBV extends Component {
                           data={this.state.GBV_woe_data[3]["contents"]}
                         />
                         <div className="card">
-                          Language type which wheather the post is in amharic or
-                          english have a very less information at distinguish
-                          between good and bad posts or there are useless. Based
-                          on the data an english post has a little bit higher
-                          likes, comments, and shares than a amharic post.
+                          Language type which whether the post is in Amharic or
+                          English has very little information to distinguish
+                          between good and bad posts. Based on the data an
+                          English post has a little bit higher likes, comments,
+                          and shares than an Amharic post.
                         </div>
                       </div>
                     </Col>
@@ -179,14 +177,13 @@ export default class GBV extends Component {
                           data={this.state.GBV_woe_data[4]["contents"]}
                         />
                         <div className="card">
-                          A time at which a post is posted have a strong
-                          information at distinguish between good and bad posts.
-                          Based on the data a posts which have been posted early
-                          in the morning and late night have higher likes,
-                          comments and shares. And a posts which have been
-                          posted in the morning, in the afternoon, in the
-                          evenining and at night have much less likes, comments
-                          and shares.
+                          A time at which a post is posted has strong
+                          information at distinguishing between good and bad
+                          posts. Based on the data posts which have been posted
+                          in the afternoon and at night have higher likes,
+                          comments, and shares than a posts that have been
+                          posted in the morning, in the evening, and at late
+                          night.
                         </div>
                       </div>
                     </Col>
