@@ -17,7 +17,7 @@ export default class Home extends Component {
   }
 
   async loadData() {
-    const response = await fetch("/home");
+    const response = await fetch("https://srh-flask.herokuapp.com/api/home");
     const json = await response.json();
     this.setState({
       SRH_iv_data: json.SRH_iv_data,

@@ -19,7 +19,7 @@ export default class SRH extends Component {
   }
 
   async loadData() {
-    const response = await fetch("/SRH");
+    const response = await fetch("https://srh-flask.herokuapp.com/api/SRH");
     const json = await response.json();
     this.setState({
       SRH_iv_data: json.SRH_iv_data,
@@ -32,7 +32,6 @@ export default class SRH extends Component {
   async componentDidMount() {
     await this.loadData();
     this.setState({ dataIsReturned: true });
-    console.log(this.state.SRH_woe_extreme_data);
   }
 
   render() {

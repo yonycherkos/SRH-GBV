@@ -20,7 +20,7 @@ export default class GBV extends Component {
   }
 
   async loadData() {
-    const response = await fetch("/GBV");
+    const response = await fetch("https://srh-flask.herokuapp.com/api/GBV");
     const json = await response.json();
     this.setState({
       GBV_iv_data: json.GBV_iv_data,

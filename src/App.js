@@ -14,10 +14,10 @@ class App extends Component {
       <div className="wrapper">
         <Navigation />
         <Switch>
-          <Route exact path="http://srh-flask.herokuapp.com/api/home" render={(props) => <Home {...props} />} />
-          <Route exact path="http://srh-flask.herokuapp.com/api/home" render={(props) => <Home {...props} />} />
-          <Route exact path="http://srh-flask.herokuapp.com/api/SRH" render={(props) => <SRH {...props} />} />
-		      <Route exact path="http://srh-flask.herokuapp.com/api/GBV" render={(props) => <GBV {...props} />} />
+          <Route exact path="/" render={(props) => <Home {...props} />} />
+          <Route exact path="/home" render={(props) => <Home {...props} />} />
+          <Route exact path="/SRH" render={(props) => <SRH {...props} />} />
+		      <Route exact path="/GBV" render={(props) => <GBV {...props} />} />
           <Route exact path="/visualize" render={(props) => <Visualize {...props} />}/>
           <Route exact path="/about" render={(props) => <About {...props} />} />
         </Switch>
