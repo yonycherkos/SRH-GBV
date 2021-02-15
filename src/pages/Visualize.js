@@ -29,7 +29,7 @@ export default class Home extends Component {
   }
 
   async loadData() {
-    const response = await fetch("/post", {
+    const response = await fetch("http://srh-flask.herokuapp.com/api/post", {
       method: "POST",
       headers: { "Content-Type": "application/json" },
       body: JSON.stringify({
