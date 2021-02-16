@@ -242,22 +242,6 @@ export default class Home extends Component {
                     </div>
                   </Col>
                 </Row>
-
-                <Row>
-                  <Col sm="12">
-                    <div className="card intro">
-                      Information Value gives a measure of how the feature
-                      sub-topics is good in distinguishing between a good and
-                      bad post. The weight of evidence measures the predictive
-                      power of an individual features in relation to the
-                      dependent variable. Based on the graph equality based
-                      contents such as equality, court, justice, society, and
-                      our voice are good in distinguish contents. And gender
-                      based contents such as gender, girl, women, and female are
-                      bad in distinguish contents
-                    </div>
-                  </Col>
-                </Row>
               </div>
             ) : null}
           </Container>

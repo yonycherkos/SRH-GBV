@@ -78,14 +78,13 @@ export default class Home extends Component {
                 <Col sm="12">
                   <div className="card intro">
                     Information Value gives a measure of how the feature
-                    sub-topics is good in distinguishing between a good and bad
+                    sub-topics are good in distinguishing between a good and bad
                     post. The weight of evidence measures the predictive power
                     of an individual features in relation to the dependent
-                    variable. Based on the graph equality based contents such as
-                    equality, court, justice, society, and our voice are good in
-                    distinguish contents. And gender based contents such as
-                    gender, girl, women, and female are bad in distinguish
-                    contents
+                    variable. Based on the SRH information value graph image and content size
+                    are good features at distinguishing between good and bad SRH posts. And based
+                    on the GBV information value graph image and link are good features to distinguish
+                    between bad and good GBV posts.
                   </div>
                 </Col>
               </Row>
